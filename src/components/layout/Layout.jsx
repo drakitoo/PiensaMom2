@@ -16,13 +16,13 @@ const pageTitles = {
 
 /**
  * Componente Layout
- * Estructura principal de la aplicación con Sidebar y Navbar
+ * Estructura principal minimalista con Sidebar y Navbar
  */
 function Layout() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const location = useLocation()
   
-  const pageTitle = pageTitles[location.pathname] || 'RefleAct'
+  const pageTitle = pageTitles[location.pathname] || 'PiensaMom'
 
   return (
     <div className="flex min-h-screen bg-gray-50">
@@ -33,21 +33,21 @@ function Layout() {
       />
 
       {/* Contenido principal */}
-      <div className="flex-1 flex flex-col min-h-screen lg:ml-0">
+      <div className="flex-1 flex flex-col min-h-screen">
         <Navbar 
           pageTitle={pageTitle} 
           onMenuClick={() => setSidebarOpen(true)} 
         />
         
         <main className="flex-1 p-4 lg:p-6">
-          <div className="animate-fade-in">
+          <div className="animate-fade-in max-w-7xl mx-auto">
             <Outlet />
           </div>
         </main>
 
-        {/* Footer */}
-        <footer className="px-4 py-3 text-center text-xs text-gray-500 border-t border-gray-200 bg-white">
-          RefleAct v1.0.0 - Sistema de Medición de Reflejos - Proyecto Universitario
+        {/* Footer minimalista */}
+        <footer className="px-4 py-3 text-center text-xs text-gray-400 border-t border-gray-100 bg-white">
+          <p>PiensaMom Sistema v1.0</p>
         </footer>
       </div>
     </div>

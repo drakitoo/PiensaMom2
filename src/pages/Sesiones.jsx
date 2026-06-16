@@ -73,10 +73,10 @@ function Sesiones() {
     <div className="space-y-6">
       {/* Estadísticas rápidas */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="bg-white rounded-xl border border-gray-200 p-4">
+        <div className="bg-white rounded-lg border border-gray-100 p-4">
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-blue-50 rounded-lg">
-              <FiActivity className="w-5 h-5 text-blue-600" />
+            <div className="p-2 bg-slate-50 rounded-lg">
+              <FiActivity className="w-5 h-5 text-slate-600" />
             </div>
             <div>
               <p className="text-2xl font-bold text-gray-900">{stats.total}</p>
@@ -84,10 +84,10 @@ function Sesiones() {
             </div>
           </div>
         </div>
-        <div className="bg-white rounded-xl border border-gray-200 p-4">
+        <div className="bg-white rounded-lg border border-gray-100 p-4">
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-green-50 rounded-lg">
-              <FiTarget className="w-5 h-5 text-green-600" />
+            <div className="p-2 bg-emerald-50 rounded-lg">
+              <FiTarget className="w-5 h-5 text-emerald-600" />
             </div>
             <div>
               <p className="text-2xl font-bold text-gray-900">{stats.completadas}</p>
@@ -95,10 +95,10 @@ function Sesiones() {
             </div>
           </div>
         </div>
-        <div className="bg-white rounded-xl border border-gray-200 p-4">
+        <div className="bg-white rounded-lg border border-gray-100 p-4">
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-amber-50 rounded-lg">
-              <FiCalendar className="w-5 h-5 text-amber-600" />
+            <div className="p-2 bg-orange-50 rounded-lg">
+              <FiCalendar className="w-5 h-5 text-orange-600" />
             </div>
             <div>
               <p className="text-2xl font-bold text-gray-900">{stats.pendientes}</p>
@@ -106,10 +106,10 @@ function Sesiones() {
             </div>
           </div>
         </div>
-        <div className="bg-white rounded-xl border border-gray-200 p-4">
+        <div className="bg-white rounded-lg border border-gray-100 p-4">
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-purple-50 rounded-lg">
-              <FiClock className="w-5 h-5 text-purple-600" />
+            <div className="p-2 bg-violet-50 rounded-lg">
+              <FiClock className="w-5 h-5 text-violet-600" />
             </div>
             <div>
               <p className="text-2xl font-bold text-gray-900">{stats.promedioTiempo} ms</p>
@@ -120,10 +120,10 @@ function Sesiones() {
       </div>
 
       {/* Filtros */}
-      <div className="bg-white rounded-xl border border-gray-200 p-4">
+      <div className="bg-white rounded-lg border border-gray-100 p-4">
         <div className="flex items-center gap-2 mb-4">
-          <FiFilter className="w-5 h-5 text-gray-500" />
-          <h3 className="font-medium text-gray-900">Filtros</h3>
+          <FiFilter className="w-5 h-5 text-gray-400" />
+          <h3 className="font-medium text-gray-900 text-sm uppercase tracking-wide">Filtros</h3>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <Select
@@ -144,10 +144,10 @@ function Sesiones() {
       </div>
 
       {/* Tabla de sesiones */}
-      <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
+      <div className="bg-white rounded-lg border border-gray-100 overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full">
-            <thead className="bg-gray-50">
+            <thead className="bg-gray-50 border-b border-gray-100">
               <tr>
                 <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   ID
@@ -172,12 +172,12 @@ function Sesiones() {
                 </th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-200">
+            <tbody className="divide-y divide-gray-100">
               {filteredSesiones.length === 0 ? (
                 <tr>
                   <td colSpan="7" className="px-6 py-12 text-center">
-                    <FiActivity className="w-12 h-12 text-gray-300 mx-auto mb-3" />
-                    <p className="text-gray-500">No se encontraron sesiones</p>
+                    <FiActivity className="w-12 h-12 text-gray-200 mx-auto mb-3" />
+                    <p className="text-gray-400 text-sm">No se encontraron sesiones</p>
                   </td>
                 </tr>
               ) : (
@@ -225,7 +225,7 @@ function Sesiones() {
         </div>
 
         {/* Footer con conteo */}
-        <div className="px-6 py-3 bg-gray-50 border-t border-gray-200">
+        <div className="px-6 py-3 bg-gray-50 border-t border-gray-100">
           <p className="text-sm text-gray-500">
             Mostrando <span className="font-medium text-gray-900">{filteredSesiones.length}</span> de{' '}
             <span className="font-medium text-gray-900">{sesiones.length}</span> sesiones

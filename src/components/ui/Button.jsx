@@ -1,6 +1,6 @@
 /**
  * Componente Button reutilizable
- * Soporta diferentes variantes y tamaños
+ * Soporta diferentes variantes y tamaños con diseño minimalista
  */
 function Button({ 
   children, 
@@ -18,12 +18,12 @@ function Button({
   `
   
   const variants = {
-    primary: 'bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500',
-    secondary: 'bg-gray-100 text-gray-700 hover:bg-gray-200 focus:ring-gray-500',
-    success: 'bg-green-600 text-white hover:bg-green-700 focus:ring-green-500',
-    danger: 'bg-red-600 text-white hover:bg-red-700 focus:ring-red-500',
-    outline: 'border border-gray-300 text-gray-700 hover:bg-gray-50 focus:ring-blue-500',
-    ghost: 'text-gray-600 hover:bg-gray-100 hover:text-gray-900 focus:ring-gray-500'
+    primary: 'bg-slate-900 text-white hover:bg-slate-800 focus:ring-slate-900',
+    secondary: 'bg-gray-100 text-gray-900 hover:bg-gray-200 focus:ring-gray-400',
+    success: 'bg-green-600 text-white hover:bg-green-700 focus:ring-green-600',
+    danger: 'bg-red-600 text-white hover:bg-red-700 focus:ring-red-600',
+    outline: 'border border-gray-300 text-gray-900 hover:bg-gray-50 focus:ring-gray-400',
+    ghost: 'text-gray-600 hover:bg-gray-100 hover:text-gray-900 focus:ring-gray-400'
   }
   
   const sizes = {

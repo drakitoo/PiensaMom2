@@ -112,13 +112,13 @@ function Pacientes() {
       {/* Header con búsqueda y botón agregar */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div className="relative flex-1 max-w-md">
-          <FiSearch className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+          <FiSearch className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
           <input
             type="text"
-            placeholder="Buscar paciente por nombre..."
+            placeholder="Buscar paciente..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-10 pr-4 py-2.5 text-sm bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full pl-9 pr-4 py-2 text-sm bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-900 focus:border-slate-900"
             aria-label="Buscar pacientes"
           />
         </div>
@@ -129,10 +129,10 @@ function Pacientes() {
       </div>
 
       {/* Tabla de pacientes */}
-      <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
+      <div className="bg-white rounded-lg border border-gray-100 overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full">
-            <thead className="bg-gray-50">
+            <thead className="bg-gray-50 border-b border-gray-100">
               <tr>
                 <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Paciente
@@ -157,12 +157,12 @@ function Pacientes() {
                 </th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-200">
+            <tbody className="divide-y divide-gray-100">
               {filteredPacientes.length === 0 ? (
                 <tr>
                   <td colSpan="7" className="px-6 py-12 text-center">
-                    <FiUser className="w-12 h-12 text-gray-300 mx-auto mb-3" />
-                    <p className="text-gray-500">No se encontraron pacientes</p>
+                    <FiUser className="w-12 h-12 text-gray-200 mx-auto mb-3" />
+                    <p className="text-gray-400 text-sm">No se encontraron pacientes</p>
                   </td>
                 </tr>
               ) : (
@@ -170,12 +170,12 @@ function Pacientes() {
                   <tr key={paciente.id} className="hover:bg-gray-50 transition-colors">
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-                          <FiUser className="w-5 h-5 text-blue-600" />
+                        <div className="w-9 h-9 bg-slate-100 rounded-lg flex items-center justify-center">
+                          <FiUser className="w-4 h-4 text-slate-600" />
                         </div>
                         <div>
                           <p className="text-sm font-medium text-gray-900">{paciente.nombre}</p>
-                          <p className="text-xs text-gray-500 max-w-[200px] truncate">{paciente.observaciones}</p>
+                          <p className="text-xs text-gray-400 max-w-[200px] truncate">{paciente.observaciones}</p>
                         </div>
                       </div>
                     </td>
@@ -197,17 +197,17 @@ function Pacientes() {
                       {new Date(paciente.fechaRegistro).toLocaleDateString('es-ES')}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-right">
-                      <div className="flex items-center justify-end gap-2">
+                      <div className="flex items-center justify-end gap-1">
                         <button
                           onClick={() => handleEdit(paciente)}
-                          className="p-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                          className="p-1.5 text-gray-500 hover:text-slate-900 hover:bg-slate-50 rounded transition-colors"
                           aria-label={`Editar ${paciente.nombre}`}
                         >
                           <FiEdit2 className="w-4 h-4" />
                         </button>
                         <button
                           onClick={() => handleDeleteClick(paciente)}
-                          className="p-2 text-gray-600 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                          className="p-1.5 text-gray-500 hover:text-red-600 hover:bg-red-50 rounded transition-colors"
                           aria-label={`Eliminar ${paciente.nombre}`}
                         >
                           <FiTrash2 className="w-4 h-4" />
