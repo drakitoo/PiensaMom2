@@ -1,4 +1,5 @@
-import { FiTrendingUp, FiTrendingDown, FiTarget, FiClock } from 'react-icons/fi'
+import { FiTrendingUp, FiTrendingDown, FiTarget, FiClock, FiUsers, FiAward } from 'react-icons/fi'
+import StatCard from '../components/cards/StatCard'
 import LineChart from '../components/charts/LineChart'
 import BarChart from '../components/charts/BarChart'
 import { 
@@ -10,7 +11,7 @@ import {
 
 /**
  * Página de Estadísticas
- * Visualización de gráficos y métricas de rendimiento
+ * Visualización de gráficos y métricas de rendimiento con diseño minimalista
  */
 function Estadisticas() {
   // Preparar datos para el gráfico de rendimiento por paciente
@@ -28,113 +29,105 @@ function Estadisticas() {
 
   return (
     <div className="space-y-6">
-      {/* Indicadores principales */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="bg-white rounded-xl border border-gray-200 p-6">
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-sm font-medium text-gray-500">Tiempo Promedio General</span>
-            <div className="p-2 bg-blue-50 rounded-lg">
-              <FiClock className="w-4 h-4 text-blue-600" />
-            </div>
-          </div>
-          <p className="text-2xl font-bold text-gray-900">{estadisticasGenerales.tiempoPromedio} ms</p>
-          <div className="flex items-center gap-1 mt-2 text-green-600 text-sm">
-            <FiTrendingDown className="w-4 h-4" />
-            <span>8.5% mejor que el mes pasado</span>
-          </div>
+      {/* Tarjetas de estadísticas principales */}
+      <section aria-labelledby="stats-heading">
+        <h2 id="stats-heading" className="sr-only">Estadísticas principales</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <StatCard
+            title="Tiempo Promedio"
+            value={`${estadisticasGenerales.tiempoPromedio} ms`}
+            subtitle="General de todos"
+            icon={FiClock}
+            color="slate"
+            trend={-8.5}
+          />
+          <StatCard
+            title="Mejor Tiempo"
+            value={`${estadisticasGenerales.mejorTiempo} ms`}
+            subtitle="Récord registrado"
+            icon={FiTarget}
+            color="emerald"
+          />
+          <StatCard
+            title="Tasa de Aciertos"
+            value={`${estadisticasGenerales.tasaAciertos}%`}
+            subtitle="Promedio general"
+            icon={FiAward}
+            color="orange"
+            trend={3}
+          />
+          <StatCard
+            title="Mejora Promedio"
+            value={`+${estadisticasGenerales.mejoraPromedio}%`}
+            subtitle="De todos los pacientes"
+            icon={FiTrendingUp}
+            color="violet"
+          />
         </div>
-
-        <div className="bg-white rounded-xl border border-gray-200 p-6">
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-sm font-medium text-gray-500">Mejor Tiempo Registrado</span>
-            <div className="p-2 bg-green-50 rounded-lg">
-              <FiTarget className="w-4 h-4 text-green-600" />
-            </div>
-          </div>
-          <p className="text-2xl font-bold text-gray-900">{estadisticasGenerales.mejorTiempo} ms</p>
-          <p className="text-sm text-gray-500 mt-2">Antonio López Fernández</p>
-        </div>
-
-        <div className="bg-white rounded-xl border border-gray-200 p-6">
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-sm font-medium text-gray-500">Tasa de Aciertos</span>
-            <div className="p-2 bg-amber-50 rounded-lg">
-              <FiTarget className="w-4 h-4 text-amber-600" />
-            </div>
-          </div>
-          <p className="text-2xl font-bold text-gray-900">{estadisticasGenerales.tasaAciertos}%</p>
-          <div className="flex items-center gap-1 mt-2 text-green-600 text-sm">
-            <FiTrendingUp className="w-4 h-4" />
-            <span>+3% respecto al inicio</span>
-          </div>
-        </div>
-
-        <div className="bg-white rounded-xl border border-gray-200 p-6">
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-sm font-medium text-gray-500">Mejora Promedio</span>
-            <div className="p-2 bg-purple-50 rounded-lg">
-              <FiTrendingUp className="w-4 h-4 text-purple-600" />
-            </div>
-          </div>
-          <p className="text-2xl font-bold text-green-600">+{estadisticasGenerales.mejoraPromedio}%</p>
-          <p className="text-sm text-gray-500 mt-2">Todos los pacientes</p>
-        </div>
-      </div>
+      </section>
 
       {/* Gráficos principales */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Evolución semanal */}
-        <LineChart
-          data={evolucionSemanal}
-          xKey="dia"
-          lines={[
-            { key: 'promedio', color: '#2563EB', name: 'Tiempo Promedio (ms)' }
-          ]}
-          title="Evolución Semanal"
-          height={300}
-        />
+        <div className="bg-white rounded-lg border border-gray-100">
+          <LineChart
+            data={evolucionSemanal}
+            xKey="dia"
+            lines={[
+              { key: 'promedio', color: '#1E293B', name: 'Tiempo Promedio (ms)' }
+            ]}
+            title="Evolución Semanal"
+            height={300}
+          />
+        </div>
 
         {/* Evolución mensual */}
-        <LineChart
-          data={evolucionMensual}
-          xKey="mes"
-          lines={[
-            { key: 'promedio', color: '#22C55E', name: 'Tiempo Promedio (ms)' }
-          ]}
-          title="Evolución Mensual"
-          height={300}
-        />
+        <div className="bg-white rounded-lg border border-gray-100">
+          <LineChart
+            data={evolucionMensual}
+            xKey="mes"
+            lines={[
+              { key: 'promedio', color: '#10B981', name: 'Tiempo Promedio (ms)' }
+            ]}
+            title="Evolución Mensual"
+            height={300}
+          />
+        </div>
       </div>
 
       {/* Ranking de pacientes */}
-      <BarChart
-        data={datosRendimiento}
-        xKey="nombre"
-        bars={[
-          { key: 'tiempoActual', color: '#2563EB', name: 'Tiempo de Reacción (ms)' }
-        ]}
-        title="Ranking de Pacientes por Tiempo de Reacción"
-        height={350}
-        layout="vertical"
-      />
+      <div className="bg-white rounded-lg border border-gray-100">
+        <BarChart
+          data={datosRendimiento}
+          xKey="nombre"
+          bars={[
+            { key: 'tiempoActual', color: '#1E293B', name: 'Tiempo de Reacción (ms)' }
+          ]}
+          title="Ranking de Pacientes por Tiempo de Reacción"
+          height={350}
+          layout="vertical"
+        />
+      </div>
 
       {/* Comparativa inicial vs actual */}
-      <div className="bg-white rounded-xl border border-gray-200 p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">
-          Progreso Individual: Tiempo Inicial vs Actual
-        </h3>
+      <div className="bg-white rounded-lg border border-gray-100 overflow-hidden">
+        <div className="px-6 py-4 border-b border-gray-100">
+          <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
+            Progreso Individual: Inicial vs Actual
+          </h3>
+        </div>
         <div className="overflow-x-auto">
           <table className="w-full">
-            <thead className="bg-gray-50">
+            <thead className="bg-gray-50 border-b border-gray-100">
               <tr>
                 <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Paciente
                 </th>
                 <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Tiempo Inicial
+                  Inicial
                 </th>
                 <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Tiempo Actual
+                  Actual
                 </th>
                 <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Mejora
@@ -144,7 +137,7 @@ function Estadisticas() {
                 </th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-200">
+            <tbody className="divide-y divide-gray-100">
               {rendimientoPorPaciente.map((paciente, index) => (
                 <tr key={index} className="hover:bg-gray-50 transition-colors">
                   <td className="px-6 py-4 whitespace-nowrap">
@@ -157,19 +150,19 @@ function Estadisticas() {
                     {paciente.tiempoActual} ms
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <span className="text-sm font-medium text-green-600">
+                    <span className="text-sm font-medium text-emerald-600">
                       -{(paciente.tiempoInicial - paciente.tiempoActual)} ms
                     </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex items-center gap-3">
-                      <div className="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden max-w-[100px]">
+                      <div className="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden max-w-[100px]">
                         <div 
-                          className="h-full bg-green-500 rounded-full transition-all duration-500"
+                          className="h-full bg-emerald-500 rounded-full transition-all duration-500"
                           style={{ width: `${paciente.mejora * 5}%` }}
                         />
                       </div>
-                      <span className="text-sm font-medium text-green-600">
+                      <span className="text-sm font-medium text-emerald-600">
                         +{paciente.mejora}%
                       </span>
                     </div>
@@ -182,14 +175,38 @@ function Estadisticas() {
       </div>
 
       {/* Leyenda informativa */}
-      <div className="bg-blue-50 border border-blue-200 rounded-xl p-4">
-        <h4 className="font-medium text-blue-900 mb-2">Interpretación de Resultados</h4>
-        <ul className="text-sm text-blue-800 space-y-1">
-          <li><span className="font-medium text-green-600">Verde:</span> Excelente - Tiempo menor a 400ms</li>
-          <li><span className="font-medium text-blue-600">Azul:</span> Bueno - Tiempo entre 400-500ms</li>
-          <li><span className="font-medium text-amber-600">Amarillo:</span> Regular - Tiempo entre 500-600ms</li>
-          <li><span className="font-medium text-red-600">Rojo:</span> Necesita mejorar - Tiempo mayor a 600ms</li>
-        </ul>
+      <div className="bg-slate-50 border border-slate-200 rounded-lg p-4">
+        <h4 className="font-medium text-slate-900 mb-3 text-sm uppercase tracking-wide">Interpretación de Resultados</h4>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
+          <div className="flex items-start gap-3">
+            <div className="w-3 h-3 bg-emerald-500 rounded-full mt-1 flex-shrink-0" />
+            <div>
+              <span className="font-medium text-slate-900">Excelente</span>
+              <p className="text-slate-600 text-xs">Menor a 400ms</p>
+            </div>
+          </div>
+          <div className="flex items-start gap-3">
+            <div className="w-3 h-3 bg-slate-600 rounded-full mt-1 flex-shrink-0" />
+            <div>
+              <span className="font-medium text-slate-900">Bueno</span>
+              <p className="text-slate-600 text-xs">400-500ms</p>
+            </div>
+          </div>
+          <div className="flex items-start gap-3">
+            <div className="w-3 h-3 bg-orange-500 rounded-full mt-1 flex-shrink-0" />
+            <div>
+              <span className="font-medium text-slate-900">Regular</span>
+              <p className="text-slate-600 text-xs">500-600ms</p>
+            </div>
+          </div>
+          <div className="flex items-start gap-3">
+            <div className="w-3 h-3 bg-red-500 rounded-full mt-1 flex-shrink-0" />
+            <div>
+              <span className="font-medium text-slate-900">Mejora Requerida</span>
+              <p className="text-slate-600 text-xs">Mayor a 600ms</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   )
