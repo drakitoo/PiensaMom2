@@ -5,7 +5,7 @@ import {
   FiActivity, 
   FiBarChart2, 
   FiSettings,
-  FiZap,
+  FiStar,
   FiX
 } from 'react-icons/fi'
 
@@ -22,7 +22,7 @@ const navItems = [
 
 /**
  * Componente Sidebar
- * Navegación lateral fija con diseño minimalista
+ * Navegación lateral moderna con gradientes indigo
  */
 function Sidebar({ isOpen, onClose }) {
   return (
@@ -30,7 +30,7 @@ function Sidebar({ isOpen, onClose }) {
       {/* Overlay para móvil */}
       {isOpen && (
         <div 
-          className="fixed inset-0 bg-black/30 z-40 lg:hidden backdrop-blur-sm"
+          className="fixed inset-0 bg-black/40 z-40 lg:hidden backdrop-blur-sm"
           onClick={onClose}
           aria-hidden="true"
         />
@@ -39,66 +39,64 @@ function Sidebar({ isOpen, onClose }) {
       {/* Sidebar */}
       <aside 
         className={`
-          fixed top-0 left-0 z-50 h-full w-64 bg-white
+          fixed top-0 left-0 z-50 h-screen w-72 bg-gradient-to-b from-blue-600 to-blue-700
           transform transition-transform duration-300 ease-in-out
           lg:translate-x-0 lg:static lg:z-auto
           ${isOpen ? 'translate-x-0' : '-translate-x-full'}
-          border-r border-gray-100
-          flex flex-col
+          flex flex-col shadow-xl
         `}
       >
-        {/* Logo */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
-          <div className="flex items-center gap-3 flex-1">
-            <div className="flex items-center justify-center w-9 h-9 bg-slate-900 rounded-lg">
-              <FiZap className="w-5 h-5 text-white" />
+        {/* Header */}
+        <div className="relative px-8 py-6 border-b border-blue-500/30">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="flex items-center justify-center w-11 h-11 bg-white/20 rounded-xl backdrop-blur-sm">
+                <FiStar className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <h1 className="text-lg font-bold text-white tracking-tight">PiensaMom</h1>
+                <p className="text-xs text-blue-200">Sistema Médico</p>
+              </div>
             </div>
-            <div>
-              <h1 className="text-sm font-bold text-gray-900 tracking-tight">PiensaMom</h1>
-              <p className="text-xs text-gray-400">Sistema de Pacientes</p>
-            </div>
+            <button
+              onClick={onClose}
+              className="p-2 text-white/70 hover:text-white hover:bg-white/10 rounded-lg lg:hidden transition-all"
+              aria-label="Cerrar menú"
+            >
+              <FiX className="w-5 h-5" />
+            </button>
           </div>
-          <button
-            onClick={onClose}
-            className="p-1.5 text-gray-400 hover:text-gray-600 lg:hidden"
-            aria-label="Cerrar menú"
-          >
-            <FiX className="w-5 h-5" />
-          </button>
         </div>
 
         {/* Navegación */}
-        <nav className="flex-1 p-3" role="navigation" aria-label="Navegación principal">
-          <ul className="space-y-1">
-            {navItems.map(({ path, icon: Icon, label }) => (
-              <li key={path}>
-                <NavLink
-                  to={path}
-                  onClick={onClose}
-                  className={({ isActive }) => `
-                    flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium
-                    transition-all duration-200
-                    ${isActive 
-                      ? 'bg-slate-50 text-slate-900 border-l-2 border-slate-900' 
-                      : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
-                    }
-                  `}
-                >
-                  <Icon className="w-5 h-5 flex-shrink-0" aria-hidden="true" />
-                  <span>{label}</span>
-                </NavLink>
-              </li>
-            ))}
-          </ul>
+        <nav className="flex-1 p-4 space-y-2 overflow-y-auto" role="navigation" aria-label="Navegación principal">
+          {navItems.map(({ path, icon: Icon, label }) => (
+            <NavLink
+              key={path}
+              to={path}
+              onClick={onClose}
+              className={({ isActive }) => `
+                flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium
+                transition-all duration-200 group
+                ${isActive 
+                  ? 'bg-white/20 text-white shadow-lg shadow-blue-900/20' 
+                  : 'text-blue-100 hover:bg-white/10 hover:text-white'
+                }
+              `}
+            >
+              <Icon className="w-5 h-5 flex-shrink-0 group-hover:scale-110 transition-transform" aria-hidden="true" />
+              <span>{label}</span>
+            </NavLink>
+          ))}
         </nav>
 
-        {/* Información del dispositivo */}
-        <div className="p-3 border-t border-gray-100">
-          <div className="flex items-center gap-3 px-3 py-2.5 bg-gray-50 rounded-lg">
-            <div className="w-2 h-2 bg-green-500 rounded-full" />
-            <div>
-              <p className="text-xs font-medium text-gray-700">Estado</p>
-              <p className="text-xs text-gray-500">Sistema operativo</p>
+        {/* Footer */}
+        <div className="p-4 border-t border-blue-500/30">
+          <div className="flex items-center gap-3 px-4 py-3 bg-white/10 rounded-xl backdrop-blur-sm">
+            <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse" />
+            <div className="min-w-0 flex-1">
+              <p className="text-xs font-medium text-white">Sistema Activo</p>
+              <p className="text-xs text-blue-200 truncate">Conectado</p>
             </div>
           </div>
         </div>

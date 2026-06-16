@@ -25,7 +25,7 @@ function Layout() {
   const pageTitle = pageTitles[location.pathname] || 'PiensaMom'
 
   return (
-    <div className="flex min-h-screen bg-gray-50">
+    <div className="flex min-h-screen bg-slate-50">
       {/* Sidebar */}
       <Sidebar 
         isOpen={sidebarOpen} 
@@ -39,14 +39,14 @@ function Layout() {
           onMenuClick={() => setSidebarOpen(true)} 
         />
         
-        <main className="flex-1 p-4 lg:p-6">
+        <main className="flex-1 p-4 lg:p-6 bg-slate-50">
           <div className="animate-fade-in max-w-7xl mx-auto">
             <Outlet />
           </div>
         </main>
 
         {/* Footer minimalista */}
-        <footer className="px-4 py-3 text-center text-xs text-gray-400 border-t border-gray-100 bg-white">
+        <footer className="px-4 py-3 text-center text-xs text-slate-400 border-t border-slate-200 bg-white">
           <p>PiensaMom Sistema v1.0</p>
         </footer>
       </div>

@@ -38,7 +38,7 @@ function Estadisticas() {
             value={`${estadisticasGenerales.tiempoPromedio} ms`}
             subtitle="General de todos"
             icon={FiClock}
-            color="slate"
+            color="indigo"
             trend={-8.5}
           />
           <StatCard
@@ -46,7 +46,7 @@ function Estadisticas() {
             value={`${estadisticasGenerales.mejorTiempo} ms`}
             subtitle="Récord registrado"
             icon={FiTarget}
-            color="emerald"
+            color="teal"
           />
           <StatCard
             title="Tasa de Aciertos"
@@ -61,7 +61,7 @@ function Estadisticas() {
             value={`+${estadisticasGenerales.mejoraPromedio}%`}
             subtitle="De todos los pacientes"
             icon={FiTrendingUp}
-            color="violet"
+            color="pink"
           />
         </div>
       </section>

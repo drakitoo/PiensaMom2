@@ -26,7 +26,7 @@ function Dashboard() {
             value={estadisticasGenerales.totalPacientes}
             subtitle="Adultos mayores activos"
             icon={FiUsers}
-            color="slate"
+            color="indigo"
             trend={5.2}
           />
           <StatCard
@@ -34,7 +34,7 @@ function Dashboard() {
             value={estadisticasGenerales.totalSesiones}
             subtitle="Este mes"
             icon={FiActivity}
-            color="emerald"
+            color="teal"
             trend={12.8}
           />
           <StatCard
@@ -50,7 +50,7 @@ function Dashboard() {
             value={`${estadisticasGenerales.mejorTiempo} ms`}
             subtitle="Récord registrado"
             icon={FiAward}
-            color="violet"
+            color="pink"
           />
         </div>
       </section>
