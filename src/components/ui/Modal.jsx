@@ -2,7 +2,7 @@ import { FiX } from 'react-icons/fi'
 
 /**
  * Componente Modal reutilizable
- * Para diálogos y formularios
+ * Para diálogos y formularios con diseño minimalista
  */
 function Modal({ isOpen, onClose, title, children, size = 'md' }) {
   if (!isOpen) return null
@@ -23,7 +23,7 @@ function Modal({ isOpen, onClose, title, children, size = 'md' }) {
     >
       {/* Overlay */}
       <div 
-        className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+        className="absolute inset-0 bg-black/30 backdrop-blur-sm"
         onClick={onClose}
         aria-hidden="true"
       />
@@ -31,18 +31,19 @@ function Modal({ isOpen, onClose, title, children, size = 'md' }) {
       {/* Modal content */}
       <div 
         className={`
-          relative w-full ${sizes[size]} bg-white rounded-xl shadow-xl
+          relative w-full ${sizes[size]} bg-white rounded-lg shadow-lg
           animate-fade-in max-h-[90vh] overflow-hidden flex flex-col
+          border border-gray-100
         `}
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
-          <h2 id="modal-title" className="text-lg font-semibold text-gray-900">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
+          <h2 id="modal-title" className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
             {title}
           </h2>
           <button
             onClick={onClose}
-            className="p-2 -mr-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
+            className="p-1.5 -mr-1.5 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded transition-colors"
             aria-label="Cerrar modal"
           >
             <FiX className="w-5 h-5" />
