@@ -110,106 +110,80 @@ function Pacientes() {
   return (
     <div className="space-y-6">
       {/* Header con búsqueda y botón agregar */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
         <div className="relative flex-1 max-w-md">
-          <FiSearch className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+          <FiSearch className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
           <input
             type="text"
             placeholder="Buscar paciente..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-9 pr-4 py-2 text-sm bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-900 focus:border-slate-900"
+            className="w-full pl-9 pr-4 py-2 text-sm bg-white border border-slate-200/50 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-600 focus:border-blue-600"
             aria-label="Buscar pacientes"
           />
         </div>
         <Button onClick={handleCreate}>
           <FiPlus className="w-4 h-4" />
-          Agregar Paciente
+          Agregar
         </Button>
       </div>
 
-      {/* Tabla de pacientes */}
-      <div className="bg-white rounded-lg border border-gray-100 overflow-hidden">
+      {/* Vista Desktop - Tabla */}
+      <div className="hidden md:block bg-white rounded-lg border border-slate-200/50 overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full">
-            <thead className="bg-gray-50 border-b border-gray-100">
+            <thead className="bg-slate-50 border-b border-slate-200/50">
               <tr>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Paciente
-                </th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Edad
-                </th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Género
-                </th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Sesiones
-                </th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Tiempo Prom.
-                </th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Registro
-                </th>
-                <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Acciones
-                </th>
+                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Paciente</th>
+                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Edad</th>
+                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Género</th>
+                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Sesiones</th>
+                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Tiempo Prom.</th>
+                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Registro</th>
+                <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-slate-500 uppercase tracking-wider">Acciones</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-100">
+            <tbody className="divide-y divide-slate-200/50">
               {filteredPacientes.length === 0 ? (
                 <tr>
                   <td colSpan="7" className="px-6 py-12 text-center">
-                    <FiUser className="w-12 h-12 text-gray-200 mx-auto mb-3" />
-                    <p className="text-gray-400 text-sm">No se encontraron pacientes</p>
+                    <FiUser className="w-12 h-12 text-slate-200 mx-auto mb-3" />
+                    <p className="text-slate-400 text-sm">No se encontraron pacientes</p>
                   </td>
                 </tr>
               ) : (
                 filteredPacientes.map((paciente) => (
-                  <tr key={paciente.id} className="hover:bg-gray-50 transition-colors">
+                  <tr key={paciente.id} className="hover:bg-blue-50/30 transition-colors">
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center gap-3">
-                        <div className="w-9 h-9 bg-slate-100 rounded-lg flex items-center justify-center">
-                          <FiUser className="w-4 h-4 text-slate-600" />
+                        <div className="w-9 h-9 bg-blue-100 rounded-lg flex items-center justify-center">
+                          <FiUser className="w-4 h-4 text-blue-600" />
                         </div>
                         <div>
-                          <p className="text-sm font-medium text-gray-900">{paciente.nombre}</p>
-                          <p className="text-xs text-gray-400 max-w-[200px] truncate">{paciente.observaciones}</p>
+                          <p className="text-sm font-medium text-slate-900">{paciente.nombre}</p>
+                          <p className="text-xs text-slate-400 max-w-[200px] truncate">{paciente.observaciones}</p>
                         </div>
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                      {paciente.edad} años
-                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-600">{paciente.edad} años</td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <Badge variant={paciente.genero === 'Masculino' ? 'primary' : 'default'}>
                         {paciente.genero}
                       </Badge>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                      {paciente.sesiones}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-600">{paciente.sesiones}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-900">
                       {paciente.tiempoPromedio > 0 ? `${paciente.tiempoPromedio} ms` : '-'}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-600">
                       {new Date(paciente.fechaRegistro).toLocaleDateString('es-ES')}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-right">
                       <div className="flex items-center justify-end gap-1">
-                        <button
-                          onClick={() => handleEdit(paciente)}
-                          className="p-1.5 text-gray-500 hover:text-slate-900 hover:bg-slate-50 rounded transition-colors"
-                          aria-label={`Editar ${paciente.nombre}`}
-                        >
+                        <button onClick={() => handleEdit(paciente)} className="p-1.5 text-slate-500 hover:text-blue-600 hover:bg-blue-50 rounded transition-colors">
                           <FiEdit2 className="w-4 h-4" />
                         </button>
-                        <button
-                          onClick={() => handleDeleteClick(paciente)}
-                          className="p-1.5 text-gray-500 hover:text-red-600 hover:bg-red-50 rounded transition-colors"
-                          aria-label={`Eliminar ${paciente.nombre}`}
-                        >
+                        <button onClick={() => handleDeleteClick(paciente)} className="p-1.5 text-slate-500 hover:text-red-600 hover:bg-red-50 rounded transition-colors">
                           <FiTrash2 className="w-4 h-4" />
                         </button>
                       </div>
@@ -220,6 +194,60 @@ function Pacientes() {
             </tbody>
           </table>
         </div>
+      </div>
+
+      {/* Vista Móvil - Cards */}
+      <div className="md:hidden space-y-3">
+        {filteredPacientes.length === 0 ? (
+          <div className="text-center py-12">
+            <FiUser className="w-12 h-12 text-slate-200 mx-auto mb-3" />
+            <p className="text-slate-400 text-sm">No se encontraron pacientes</p>
+          </div>
+        ) : (
+          filteredPacientes.map((paciente) => (
+            <div key={paciente.id} className="bg-white rounded-lg border border-slate-200/50 p-4 space-y-3">
+              <div className="flex items-start justify-between gap-2">
+                <div className="flex items-center gap-3 flex-1">
+                  <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                    <FiUser className="w-5 h-5 text-blue-600" />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-sm font-semibold text-slate-900 truncate">{paciente.nombre}</p>
+                    <p className="text-xs text-slate-400 truncate">{paciente.observaciones}</p>
+                  </div>
+                </div>
+                <div className="flex gap-1">
+                  <button onClick={() => handleEdit(paciente)} className="p-1.5 text-slate-500 hover:text-blue-600 hover:bg-blue-50 rounded transition-colors">
+                    <FiEdit2 className="w-4 h-4" />
+                  </button>
+                  <button onClick={() => handleDeleteClick(paciente)} className="p-1.5 text-slate-500 hover:text-red-600 hover:bg-red-50 rounded transition-colors">
+                    <FiTrash2 className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-3 text-sm">
+                <div>
+                  <p className="text-xs text-slate-500">Edad</p>
+                  <p className="font-medium text-slate-900">{paciente.edad} años</p>
+                </div>
+                <div>
+                  <p className="text-xs text-slate-500">Género</p>
+                  <Badge variant={paciente.genero === 'Masculino' ? 'primary' : 'default'}>
+                    {paciente.genero}
+                  </Badge>
+                </div>
+                <div>
+                  <p className="text-xs text-slate-500">Sesiones</p>
+                  <p className="font-medium text-slate-900">{paciente.sesiones}</p>
+                </div>
+                <div>
+                  <p className="text-xs text-slate-500">Tiempo Prom.</p>
+                  <p className="font-medium text-slate-900">{paciente.tiempoPromedio > 0 ? `${paciente.tiempoPromedio} ms` : '-'}</p>
+                </div>
+              </div>
+            </div>
+          ))
+        )}
       </div>
 
       {/* Modal Crear/Editar Paciente */}

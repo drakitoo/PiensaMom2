@@ -28,11 +28,11 @@ function Estadisticas() {
   }))
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 md:space-y-6">
       {/* Tarjetas de estadísticas principales */}
       <section aria-labelledby="stats-heading">
         <h2 id="stats-heading" className="sr-only">Estadísticas principales</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
           <StatCard
             title="Tiempo Promedio"
             value={`${estadisticasGenerales.tiempoPromedio} ms`}
@@ -67,9 +67,9 @@ function Estadisticas() {
       </section>
 
       {/* Gráficos principales */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
         {/* Evolución semanal */}
-        <div className="bg-white rounded-lg border border-gray-100">
+        <div className="bg-white rounded-lg border border-slate-200/50">
           <LineChart
             data={evolucionSemanal}
             xKey="dia"
@@ -82,7 +82,7 @@ function Estadisticas() {
         </div>
 
         {/* Evolución mensual */}
-        <div className="bg-white rounded-lg border border-gray-100">
+        <div className="bg-white rounded-lg border border-slate-200/50">
           <LineChart
             data={evolucionMensual}
             xKey="mes"
@@ -96,7 +96,7 @@ function Estadisticas() {
       </div>
 
       {/* Ranking de pacientes */}
-      <div className="bg-white rounded-lg border border-gray-100">
+      <div className="bg-white rounded-lg border border-slate-200/50">
         <BarChart
           data={datosRendimiento}
           xKey="nombre"

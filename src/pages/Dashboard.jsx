@@ -20,7 +20,7 @@ function Dashboard() {
       {/* Tarjetas de estadísticas */}
       <section aria-labelledby="stats-heading">
         <h2 id="stats-heading" className="sr-only">Estadísticas generales</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
           <StatCard
             title="Pacientes Registrados"
             value={estadisticasGenerales.totalPacientes}
@@ -56,9 +56,9 @@ function Dashboard() {
       </section>
 
       {/* Gráfico de evolución y tabla de sesiones */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
         {/* Gráfico de evolución semanal */}
-        <section className="lg:col-span-2" aria-labelledby="chart-heading">
+        <section className="md:col-span-1 lg:col-span-2" aria-labelledby="chart-heading">
           <h2 id="chart-heading" className="sr-only">Evolución semanal</h2>
           <LineChart
             data={evolucionSemanal}
@@ -72,9 +72,9 @@ function Dashboard() {
         </section>
 
         {/* Resumen rápido */}
-        <section aria-labelledby="summary-heading">
+        <section className="md:col-span-1" aria-labelledby="summary-heading">
           <h2 id="summary-heading" className="sr-only">Resumen de rendimiento</h2>
-          <div className="bg-white rounded-lg border border-gray-100 p-6 h-full">
+          <div className="bg-white rounded-lg border border-slate-200/50 p-4 md:p-6 h-full">
             <h3 className="text-sm font-semibold text-gray-900 mb-4 uppercase tracking-wide">Resumen</h3>
             <div className="space-y-3">
               <div className="flex items-center justify-between p-3 bg-emerald-50 rounded-lg">
